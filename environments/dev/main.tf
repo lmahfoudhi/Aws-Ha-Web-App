@@ -65,3 +65,16 @@ module "iam-policy" {
   environment = var.environment
   id          = var.id
 }
+
+################################################################################
+# Application Loadbalancer
+################################################################################
+
+module "alb" {
+    source = "../../modules/alb"
+    environment = var.environment
+    id = var.id
+    security_group_ids = toset([module.alb_sg.security_group_id])
+    vpc_id = module.vpc.vpc_id
+    alb_subnets = toset(module.vpc.public_subnets)
+}
