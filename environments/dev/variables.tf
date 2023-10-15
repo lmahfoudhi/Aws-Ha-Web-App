@@ -35,3 +35,27 @@ variable "id" {
   type        = string
   description = "ID associated to the project"
 }
+
+variable "cidr" {
+  type        = string
+  description = "vpc ip range"
+  default     = "10.0.0.0/16"
+}
+
+variable "az" {
+  type        = set(string)
+  description = "Availability zones for the vpc"
+  default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+}
+
+variable "private_subnets" {
+  type        = list(string)
+  description = "ip range for the private subnets"
+  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+}
+
+variable "public_subnets" {
+  type        = list(string)
+  description = "ip range for the public subnets"
+  default     = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+}
