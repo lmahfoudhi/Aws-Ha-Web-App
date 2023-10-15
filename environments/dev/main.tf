@@ -30,8 +30,11 @@ module "alb_sg" {
   description = "Security group for the ALB"
   vpc_id      = module.vpc.vpc_id
 
-  ingress_rules = ["https-443-tcp", "http-80-tcp"]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_rules       = ["https-443-tcp", "http-80-tcp"]
 
+  egress_cidr_blocks = ["0.0.0.0/0"]
+  egress_rules = ["all-all"]
 }
 
 module "asg_sg" {
@@ -47,4 +50,7 @@ module "asg_sg" {
       source_security_group_id = module.alb_sg.security_group_id
     }
   ]
+  
+  egress_cidr_blocks = ["0.0.0.0/0"]
+  egress_rules = ["all-all"]
 }   
