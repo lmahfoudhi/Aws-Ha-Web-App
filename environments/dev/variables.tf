@@ -45,7 +45,7 @@ variable "cidr" {
 variable "az" {
   type        = set(string)
   description = "Availability zones for the vpc"
-  default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
 variable "private_subnets" {
