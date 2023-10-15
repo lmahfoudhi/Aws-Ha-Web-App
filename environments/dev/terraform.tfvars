@@ -1,0 +1,7 @@
+region         = "us-west-2"
+id             = "pp-01"
+environment    = "dev"
+hash_key       = "LockID"
+attribute_name = "LockID"
+attribute_type = "S"
+billing_mode   = "PAY_PER_REQUEST"

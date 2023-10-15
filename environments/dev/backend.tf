@@ -1,6 +1,3 @@
-provider "aws" {
-  region = "us-west-2"
-}
 
 resource "aws_s3_bucket" "state_lock_bucket" {
   bucket = "${var.environment}-${var.id}-s3-bucket"
