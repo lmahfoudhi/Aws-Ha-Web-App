@@ -34,7 +34,7 @@ module "alb_sg" {
   ingress_rules       = ["https-443-tcp", "http-80-tcp"]
 
   egress_cidr_blocks = ["0.0.0.0/0"]
-  egress_rules = ["all-all"]
+  egress_rules       = ["all-all"]
 }
 
 module "asg_sg" {
@@ -48,10 +48,20 @@ module "asg_sg" {
     {
       rule                     = "http-8080-tcp"
       source_security_group_id = module.alb_sg.security_group_id
-    },  
+    },
   ]
-number_of_computed_ingress_with_source_security_group_id = 1
+  number_of_computed_ingress_with_source_security_group_id = 1
 
   egress_cidr_blocks = ["0.0.0.0/0"]
-  egress_rules = ["all-all"]
-}   
+  egress_rules       = ["all-all"]
+}
+
+################################################################################
+# Policy
+################################################################################
+
+module "iam-policy" {
+  source      = "../../modules/policy"
+  environment = var.environment
+  id          = var.id
+}
