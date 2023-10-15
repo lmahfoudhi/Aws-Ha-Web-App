@@ -7,7 +7,7 @@ resource "aws_iam_instance_profile" "instance_profile" {
 resource "aws_launch_template" "application_lt" {
   name_prefix   = "${var.environment}-${var.id}-launch_template"
   image_id      = var.ami_id
-  instance_type = var.instance_type
+  instance_type = "t2.medium"
   key_name      = var.key_name
 
   iam_instance_profile {
@@ -60,6 +60,6 @@ resource "aws_autoscaling_policy" "cpu_scaling_policy" {
 
 resource "aws_autoscaling_attachment" "application_asg_attachment" {
   autoscaling_group_name = aws_autoscaling_group.application_asg.name
-  alb_target_group_arn   = var.alb_target_group_arn
+  lb_target_group_arn   = var.alb_target_group_arn
 
 }

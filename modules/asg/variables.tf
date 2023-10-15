@@ -18,11 +18,6 @@ variable "ami_id" {
   description = "ami of the application"
 }
 
-variable "instance_type" {
-  type        = string
-  description = "ec2 instance type"
-}
-
 variable "key_name" {
   type        = string
   description = "key to ssh to ec2 instance"
