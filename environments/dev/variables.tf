@@ -60,3 +60,25 @@ variable "public_subnets" {
   default     = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 }
 
+variable "ami_id" {
+  type        = string
+  description = "ami of the application"
+  default = "ami-020f3ca563c92097b"
+}
+
+variable "key_name" {
+  type        = string
+  description = "name of the ssh key"
+  default = "web"
+}   
+
+variable "user_data" {
+  type        = string
+  description = "bootstrapping command"
+  default = <<-EOF
+                                    #!/bin/bash
+                                    bash /home/ubuntu/start.sh
+                                   EOF
+}   
+
+

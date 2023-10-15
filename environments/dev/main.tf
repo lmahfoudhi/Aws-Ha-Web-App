@@ -78,3 +78,21 @@ module "alb" {
     vpc_id = module.vpc.vpc_id
     alb_subnets = toset(module.vpc.public_subnets)
 }
+
+################################################################################
+# Autoscaling group
+################################################################################
+
+module "asg" {
+    source = "../../modules/asg"
+    environment = var.environment
+    id = var.id
+    ami_id = var.ami_id
+    key_name = var.key_name
+    user_data = var.user_data
+    security_group_ids = toset([module.asg_sg.security_group_id])
+    iam_role = module.iam-policy.iam_role
+    asg_subnets = toset(module.vpc.private_subnets)
+    alb_target_group_arn = module.alb.alb_target_group_arn
+
+}
